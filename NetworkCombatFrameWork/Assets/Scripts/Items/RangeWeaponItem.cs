@@ -6,4 +6,14 @@ using UnityEngine;
 public class RangeWeaponItem : WeaponItem
 {
     public AnimatorOverrideController weaponAnimator;
+    
+    public struct CrosshairData
+    {
+        public Sprite CrosshairSprite;
+        public int CrosshairSize;
+        public Color CrosshairColor;
+    }
+    
+    public CrosshairData CrosshairDataDefault;
+    public CrosshairData CrosshairDataTargetInSight;
 }

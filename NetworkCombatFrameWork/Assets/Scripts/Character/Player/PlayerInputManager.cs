@@ -406,8 +406,11 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
             fire1Input = false;
 
             player.playerNetworkManager.SetCharacterAcionHand(true);
-
-            player.playerWeaponManager.Shooting(fire1Input,fire2Input,fire2Input);
+            
+            player.playerCombatManager.PerformWeaponBasedAction(
+                player.playerInventoryManager.currentRightHandWeapon.oh_LightAttack_Action,
+                player.playerInventoryManager.currentRightHandWeapon);
+            
         }
     }
 
@@ -422,14 +425,6 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
 
     private void HandleZoomInput()
     {
-        if(zoomInput)
-        {
-            player.playerWeaponManager.IsAiming = true;
-        }
-        else
-        {
-            player.playerWeaponManager.IsAiming = false;
-        }
         
     }
 }

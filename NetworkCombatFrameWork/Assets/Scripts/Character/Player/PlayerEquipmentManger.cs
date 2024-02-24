@@ -127,6 +127,12 @@ public class PlayerEquipmentManger : CharacterEquipmentMangaer
             rightHandSlot.LoadWeapon(rightHandWeaponModel);
             rightWeaponManager = rightHandWeaponModel.GetComponent<WeaponManager>();
             rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+            // range
+            WeaponController weaponController = rightHandWeaponModel.GetComponentInChildren<WeaponController>();
+            if (weaponController)
+            {
+                weaponController.Owner = this.gameObject;
+            }
         }
     }
 

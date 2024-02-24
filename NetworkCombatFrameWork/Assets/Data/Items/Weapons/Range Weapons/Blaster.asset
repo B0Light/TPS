@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9cd938eb721794b9ba970567d1d206, type: 3}
+  m_Name: Blaster
+  m_EditorClassIdentifier: 
+  itemName: Blaster
+  itemIcon: {fileID: 21300000, guid: 3c187e19c32c13542ba8a0c1a3a88ece, type: 3}
+  itemDescription: 
+  itemID: 3
+  weaponModel: {fileID: 3011093038452889878, guid: 3a26766ece52ddd4181c2ac308d15f7b,
+    type: 3}
+  strengthREQ: 0
+  dexREQ: 0
+  intREQ: 0
+  faithREQ: 0
+  physicalDamgae: 10
+  magicDamage: 0
+  fireDamage: 0
+  holyDamage: 0
+  lightningDamage: 0
+  poiseDamage: 10
+  light_Attack_01_Modifier: 1
+  light_Attack_02_Modifier: 1.2
+  heavy_Attack_01_Modifier: 1.4
+  heavy_Attack_02_Modifier: 1.6
+  charge_Attack_01_Modifier: 2
+  charge_Attack_02_Modifier: 3
+  baseStaminaCost: 20
+  lightAttackStaminaCostMultiplier: 0.9
+  oh_LightAttack_Action: {fileID: 11400000, guid: a0c31d8d45db5b14eabc4405c132626d,
+    type: 2}
+  oh_HeavyAttack_Action: {fileID: 0}
+  soundEffects: []
+  weaponAnimator: {fileID: 0}

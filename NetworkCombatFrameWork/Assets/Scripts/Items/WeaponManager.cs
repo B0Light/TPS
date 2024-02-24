@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
     public MeleeWeaponDamageCollider meleeDamageCollider;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         meleeDamageCollider = GetComponentInChildren<MeleeWeaponDamageCollider>();
 
     }
 
-    public void SetWeaponDamage(CharacterManager characterWieldingWeapon ,WeaponItem weapon)
+    public virtual void SetWeaponDamage(CharacterManager characterWieldingWeapon ,WeaponItem weapon)
     {
         meleeDamageCollider.characterCasuingDamage = characterWieldingWeapon;
         meleeDamageCollider.physicalDamage = weapon.physicalDamgae;

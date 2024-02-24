@@ -1712,7 +1712,6 @@ GameObject:
   - component: {fileID: 4908194046855512897}
   - component: {fileID: 4908194046855512896}
   - component: {fileID: 7793570991925330882}
-  - component: {fileID: 2547288579897987444}
   m_Layer: 6
   m_Name: Player_Skin
   m_TagString: Player
@@ -1944,6 +1943,7 @@ MonoBehaviour:
   playerEquipmentManger: {fileID: 0}
   playerCombatManager: {fileID: 0}
   playerWeaponManager: {fileID: 0}
+  weaponCam: {fileID: 4233095855590545207}
   resetStats: 0
   revive: 0
 --- !u!114 &2551771914714625397
@@ -2034,7 +2034,7 @@ MonoBehaviour:
     type: 2}
   weaponInRightHandSlots:
   - {fileID: 11400000, guid: d88497e2fe628f644859027bafcb6c65, type: 2}
-  - {fileID: 11400000, guid: 088051cb6ccbf694193af77f5caf0a80, type: 2}
+  - {fileID: 11400000, guid: 8155a17fb467a514abaa847adfefefd0, type: 2}
   - {fileID: 11400000, guid: e5cbb90d515f59843b762092dab25f02, type: 2}
   rightHandWeaponIndex: 0
   weaponInLeftHandSlots:
@@ -2271,35 +2271,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2547288579897987444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4904439961130953516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70de0d7a9cc43cf4db1526ae296082d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartingWeapons:
-  - {fileID: 8323776800172828795, guid: b318fabc73446b746a1005cede0c4ceb, type: 3}
-  WeaponCamera: {fileID: 4233095855590545207}
-  WeaponParentSocket: {fileID: 6445266104049181216}
-  DefaultWeaponPosition: {fileID: 6445266104049181216}
-  AimingWeaponPosition: {fileID: 6445266104049181216}
-  DownWeaponPosition: {fileID: 6445266104049181216}
-  RecoilSharpness: 50
-  MaxRecoilDistance: 0.5
-  RecoilRestitutionSharpness: 10
-  AimingAnimationSpeed: 10
-  DefaultFov: 60
-  WeaponFovMultiplier: 1
-  WeaponSwitchDelay: 1
-  FpsWeaponLayer:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!1 &4904442537063356112
 GameObject:
   m_ObjectHideFlags: 0
@@ -43042,7 +43013,6 @@ Transform:
   - {fileID: 4908195671673555490}
   - {fileID: 7874502581752639190}
   - {fileID: 1967632614006910922}
-  - {fileID: 6445266104049181216}
   m_Father: {fileID: 4908275817598214724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2138580867944883625
@@ -70291,37 +70261,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -5.573508, y: 1.2720871, z: 0.41331673}
     m_Extent: {x: 13.203741, y: 8.07661, z: 13.788857}
   m_DirtyAABB: 0
---- !u!1 &5558558712030870672
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6445266104049181216}
-  m_Layer: 7
-  m_Name: RangeWeaponSlot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6445266104049181216
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5558558712030870672}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -0, y: -0, z: 0}
-  m_LocalScale: {x: 80, y: 80, z: 80}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4907976641574008972}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!1 &6838135197725422212
 GameObject:
   m_ObjectHideFlags: 0

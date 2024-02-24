@@ -10,22 +10,9 @@ using UnityEngine.Events;
         Charge,
     }
 
-    [System.Serializable]
-    public struct CrosshairData
-    {
-        public Sprite CrosshairSprite;
-        public int CrosshairSize;
-        public Color CrosshairColor;
-    }
-
     [RequireComponent(typeof(AudioSource))]
     public class WeaponController : MonoBehaviour
     {
-        public string WeaponName;
-        public Sprite WeaponIcon;
-        public CrosshairData CrosshairDataDefault;
-        public CrosshairData CrosshairDataTargetInSight;
-
         [Header("Internal References")]
         public GameObject WeaponRoot;
         public Transform WeaponMuzzle;
@@ -40,7 +27,6 @@ using UnityEngine.Events;
         public float RecoilForce = 1;
         [Range(0f, 1f)]
         public float AimZoomRatio = 1f;
-
         public Vector3 AimOffset;
 
         [Header("Ammo Parameters")]
@@ -52,29 +38,27 @@ using UnityEngine.Events;
         [Range(0.0f, 5.0f)] public float ShellCasingEjectionForce = 2.0f;
         [Range(1, 30)] public int ShellPoolSize = 1;
         public float AmmoReloadRate = 1f;
-
         public float AmmoReloadDelay = 2f;
-
         public int MaxAmmo = 8;
-
+        
+        [Header("Damage")]
+        public float physicalDamage = 0;
+        public float magicDamage = 0;
+        public float fireDamage = 0;
+        public float lightningDamage = 0;
+        public float holyDamage = 0;
+        
         [Header("Charging parameters (charging weapons only)")]
         public bool AutomaticReleaseOnCharged;
-
         public float MaxChargeDuration = 2f;
-
         public float AmmoUsedOnStartCharge = 1f;
-
         public float AmmoUsageRateWhileCharging = 1f;
 
         [Header("Audio & Visual")] 
         public Animator WeaponAnimator;
-
         public GameObject MuzzleFlashPrefab;
-
         public bool UnparentMuzzleFlash;
-
         public AudioClip ShootSfx;
-
         public AudioClip ChangeWeaponSfx;
         public bool UseContinuousShootSound = false;
         public AudioClip ContinuousShootStartSfx;
@@ -82,7 +66,6 @@ using UnityEngine.Events;
         public AudioClip ContinuousShootEndSfx;
         AudioSource m_ContinuousShootAudioSource = null;
         bool m_WantsToShoot = false;
-
         public UnityAction OnShoot;
         public event Action OnShootProcessed;
 
@@ -399,6 +382,13 @@ using UnityEngine.Events;
                 Vector3 shotDirection = GetShotDirectionWithinSpread(WeaponMuzzle);
                 ProjectileBase newProjectile = Instantiate(ProjectilePrefab, WeaponMuzzle.position,
                     Quaternion.LookRotation(shotDirection));
+                
+                newProjectile.physicalDamage = physicalDamage;
+                newProjectile.magicDamage = magicDamage;
+                newProjectile.fireDamage = fireDamage;
+                newProjectile.lightningDamage = lightningDamage;
+                newProjectile.holyDamage = holyDamage;
+                
                 newProjectile.Shoot(this);
             }
 

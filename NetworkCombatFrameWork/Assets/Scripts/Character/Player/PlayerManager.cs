@@ -18,6 +18,8 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerWeaponsManager playerWeaponManager;
     //[HideInInspector] public PlayerSoundFXManager playerSoundFXManager;
 
+    public Camera weaponCam;
+
     [Header("Debug")] 
     [SerializeField] private bool resetStats = false;
     [SerializeField] private bool revive = false;
