@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeaponItem : Item
 {
+    [Header("WeaponType")] public WeaponType weaponType;
+    
     [Header("Weapon Model")] public GameObject weaponModel;
 
     [Header("Weapon Requirements")] public int strengthREQ = 0;

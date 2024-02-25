@@ -11,18 +11,24 @@ public class RangeWeaponItemShootingAction : WeaponItemAction
         base.AttempToPerformAction(playerPerformingAction, weaponPerformingAction);
         
         if (!playerPerformingAction.IsOwner) return;
+        
         GetActiveWeapon(playerPerformingAction);
         
-        if(activeWeapon)
-            Shooting();
+        if(activeWeapon && playerPerformingAction.IsAiming)
+            Shooting(playerPerformingAction);
     }
 
-    private void Shooting()
+    private void Shooting(PlayerManager playerManager)
     {
         if (activeWeapon.IsReloading)
             return;
         
         bool hasFired = activeWeapon.HandleShootInputs(true,true,false);
+
+        if (hasFired)
+        {
+            playerManager.playerAnimatorManager.SetTrigger("Shooting");
+        }
     }
 
     private void GetActiveWeapon(PlayerManager playerManager)

@@ -38,6 +38,6 @@ MonoBehaviour:
   lightAttackStaminaCostMultiplier: 0.9
   oh_LightAttack_Action: {fileID: 11400000, guid: a0c31d8d45db5b14eabc4405c132626d,
     type: 2}
-  oh_HeavyAttack_Action: {fileID: 0}
+  oh_HeavyAttack_Action: {fileID: 11400000, guid: 5017108be07213649b7d9d60657f3675,
+    type: 2}
   soundEffects: []
-  weaponAnimator: {fileID: 0}

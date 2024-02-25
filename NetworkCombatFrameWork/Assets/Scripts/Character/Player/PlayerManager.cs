@@ -15,10 +15,23 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerEquipmentManger playerEquipmentManger;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
-    [HideInInspector] public PlayerWeaponsManager playerWeaponManager;
     //[HideInInspector] public PlayerSoundFXManager playerSoundFXManager;
 
     public Camera weaponCam;
+
+    public bool IsAiming
+    {
+        get
+        {
+            return isAiming;
+        }
+        set
+        {
+            isAiming = value;
+            animator.SetBool("IsAim",isAiming);
+        }
+    }
+    private bool isAiming = false;
 
     [Header("Debug")] 
     [SerializeField] private bool resetStats = false;
@@ -38,7 +51,6 @@ public class PlayerManager : CharacterManager
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerEquipmentManger = GetComponent<PlayerEquipmentManger>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
-        playerWeaponManager = GetComponent<PlayerWeaponsManager>();
         //playerSoundFXManager = GetComponent<PlayerSoundFXManager>();
     }
 
@@ -78,6 +90,10 @@ public class PlayerManager : CharacterManager
         base.LateUpdate();
 
         PlayerCamera.Instance.HandleAllCameraActions();
+        if (isAiming)
+        {
+            this.transform.forward = PlayerCamera.Instance.transform.forward;
+        }
     }
 
     public override void OnNetworkSpawn()

@@ -43,9 +43,6 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
     [SerializeField] bool chargeAttackInput = false;
     
     [Header("RANGE INPUT")]
-    [SerializeField] bool fire1Input = false;
-    [SerializeField] bool fire2Input = false;
-    [SerializeField] bool zoomInput = false;
     [SerializeField] bool reload = false;
 
     private void Start()
@@ -115,12 +112,6 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
             
             // Range
             playerControls.PlayerActions.Reload.performed += i => reload = true;
-            playerControls.PlayerActions.Fire1.performed += i => fire1Input = true;
-            playerControls.PlayerActions.Fire2.performed += i => fire2Input = true;
-            playerControls.PlayerActions.Fire2.canceled += i => fire2Input = false;
-            
-            playerControls.PlayerActions.Zoom.performed += i => zoomInput = true;
-            playerControls.PlayerActions.Zoom.canceled += i => zoomInput = false;
         }
 
         playerControls.Enable();
@@ -168,10 +159,6 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
         HandleSwitchLWeaponInput();
         HandleSwitchRWeaponInput();
         
-        //range
-        HandleFireInput();
-        HandleZoomInput();
-        HandleReloadInput();
     }
 
     //lock on
@@ -283,15 +270,23 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
         }
 
         // IF WE ARE NOT LOCKED ON, ONLY USE THE MOVE AMOUNT
-
-        if (!player.playerNetworkManager.isLockOn.Value || player.playerNetworkManager.isSprinting.Value)
-        {
-            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
-        }
-        else
+        if (player.IsAiming)
         {
             player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.playerNetworkManager.isSprinting.Value);
         }
+        else
+        {
+            if (!player.playerNetworkManager.isLockOn.Value || player.playerNetworkManager.isSprinting.Value)
+            {
+                player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
+            }
+            else
+            {
+                player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.playerNetworkManager.isSprinting.Value);
+            }
+        }
+
+        
 
 
         // IF WE ARE LOCKED ON PASS THE HORIZONTAL MOVEMENT AS WELL
@@ -399,33 +394,5 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
         }
     }
 
-    private void HandleFireInput()
-    {
-        if(fire1Input)
-        {
-            fire1Input = false;
-
-            player.playerNetworkManager.SetCharacterAcionHand(true);
-            
-            player.playerCombatManager.PerformWeaponBasedAction(
-                player.playerInventoryManager.currentRightHandWeapon.oh_LightAttack_Action,
-                player.playerInventoryManager.currentRightHandWeapon);
-            
-        }
-    }
-
-    private void HandleReloadInput()
-    {
-        if (reload)
-        {
-            reload = false;
-            player.playerWeaponManager.Reloading();
-        }
-    }
-
-    private void HandleZoomInput()
-    {
-        
-    }
 }
 

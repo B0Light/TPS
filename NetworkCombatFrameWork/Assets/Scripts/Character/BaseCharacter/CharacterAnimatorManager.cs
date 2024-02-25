@@ -188,5 +188,15 @@ public class CharacterAnimatorManager : MonoBehaviour
     {
 
     }
+    
+    public void SetParameterBool(string parameter, bool value)
+    {
+        character.animator.SetBool(parameter, value);
+    }
+    
+    public void SetTrigger(string parameter)
+    {
+        character.animator.SetTrigger(parameter);
+    }
 }
 

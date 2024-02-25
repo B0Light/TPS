@@ -1770,7 +1770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3558440953
+  GlobalObjectIdHash: 3729345058
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1944,6 +1944,7 @@ MonoBehaviour:
   playerCombatManager: {fileID: 0}
   playerWeaponManager: {fileID: 0}
   weaponCam: {fileID: 4233095855590545207}
+  isAiming: 0
   resetStats: 0
   revive: 0
 --- !u!114 &2551771914714625397
@@ -2086,6 +2087,7 @@ MonoBehaviour:
   backward_Medium_Damage: []
   left_Medium_Damage: []
   right_Medium_Damage: []
+  isAim: 0
 --- !u!114 &4908194046855512903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2269,7 +2271,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &4904442537063356112
 GameObject:

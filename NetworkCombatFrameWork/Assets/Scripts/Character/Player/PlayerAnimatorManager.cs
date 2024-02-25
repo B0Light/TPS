@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 
 public class PlayerAnimatorManager : CharacterAnimatorManager
 {
     PlayerManager player;
+
+    [Header("Shooting")] 
+    public bool isAim = false;
 
     protected override void Awake()
     {

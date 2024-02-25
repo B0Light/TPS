@@ -47,3 +47,9 @@ public enum AttackType
     ChargedAttack01,
     ChargedAttack02,
 }
+
+public enum WeaponType
+{
+    melee,
+    range,
+}

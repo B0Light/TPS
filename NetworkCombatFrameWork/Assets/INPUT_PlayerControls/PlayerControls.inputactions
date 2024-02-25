@@ -232,33 +232,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Zoom",
-                    "type": "PassThrough",
-                    "id": "e102883a-b293-4b99-bbe4-96402cc18108",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Fire1",
-                    "type": "Button",
-                    "id": "f86c916b-eec8-4050-9a36-c19476279ef3",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Fire2",
-                    "type": "PassThrough",
-                    "id": "5aa51036-2a35-4fe4-952d-d1502de2d0b7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold(pressPoint=0.1)",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Reload",
                     "type": "Button",
                     "id": "f9386156-17e2-4c11-acc6-78a3bff3629b",
@@ -420,39 +393,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwitchLWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b9fc2323-1a3e-4b3d-86b5-34feec253d38",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Zoom",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fab3aea8-46bb-4bab-91f3-7a3f574fec51",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Fire1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bc5b7b9c-76f2-4e76-ae06-e4316d798e90",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Fire2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

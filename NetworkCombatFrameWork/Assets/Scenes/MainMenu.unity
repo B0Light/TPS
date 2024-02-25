@@ -6411,6 +6411,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7205514619923469271, guid: 3f49c824dec81d246b1e9c81c5e12346,
         type: 3}
+      propertyPath: aimCameraX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205514619923469271, guid: 3f49c824dec81d246b1e9c81c5e12346,
+        type: 3}
+      propertyPath: aimCameraY
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205514619923469271, guid: 3f49c824dec81d246b1e9c81c5e12346,
+        type: 3}
+      propertyPath: aimCameraZ
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205514619923469271, guid: 3f49c824dec81d246b1e9c81c5e12346,
+        type: 3}
+      propertyPath: setCameraAimSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205514619923469271, guid: 3f49c824dec81d246b1e9c81c5e12346,
+        type: 3}
+      propertyPath: aimTargetFollowSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205514619923469271, guid: 3f49c824dec81d246b1e9c81c5e12346,
+        type: 3}
       propertyPath: setCameraHeightSpeed
       value: 0.2
       objectReference: {fileID: 0}

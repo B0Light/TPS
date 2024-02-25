@@ -89,12 +89,14 @@ public class PlayerEquipmentManger : CharacterEquipmentMangaer
                 player.playerInventoryManager.rightHandWeaponIndex = -1;
                 selectedWeapon = WorldItemDatabase.Instance.unarmedWeapon;
                 player.playerNetworkManager.currentRightHandWeaponID.Value = selectedWeapon.itemID;
+                player.animator.SetInteger("WeaponID", player.playerNetworkManager.currentRightHandWeaponID.Value);
 
             }
             else
             {
                 player.playerInventoryManager.rightHandWeaponIndex = firstWeaponPosition;
                 player.playerNetworkManager.currentRightHandWeaponID.Value = firstWeapon.itemID;
+                player.animator.SetInteger("WeaponID", player.playerNetworkManager.currentRightHandWeaponID.Value);
             }
 
             return;
@@ -107,6 +109,7 @@ public class PlayerEquipmentManger : CharacterEquipmentMangaer
                 selectedWeapon = player.playerInventoryManager.weaponInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex];
 
                 player.playerNetworkManager.currentRightHandWeaponID.Value = player.playerInventoryManager.weaponInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex].itemID;
+                player.animator.SetInteger("WeaponID", player.playerNetworkManager.currentRightHandWeaponID.Value);
                 return;
             }
         }
@@ -122,7 +125,11 @@ public class PlayerEquipmentManger : CharacterEquipmentMangaer
         if(player.playerInventoryManager.currentRightHandWeapon != null)
         {
             rightHandSlot.UnloadWeapon();
-
+            // to zoom out
+            if(player.IsAiming)
+                PlayerCamera.Instance.Aiming();
+            
+            
             rightHandWeaponModel = Instantiate(player.playerInventoryManager.currentRightHandWeapon.weaponModel);
             rightHandSlot.LoadWeapon(rightHandWeaponModel);
             rightWeaponManager = rightHandWeaponModel.GetComponent<WeaponManager>();

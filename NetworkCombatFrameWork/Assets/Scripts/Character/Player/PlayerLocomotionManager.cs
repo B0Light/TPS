@@ -139,7 +139,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleRotation()
     {
-
         if (player.isDead.Value) return;
 
         if (!canRotate)

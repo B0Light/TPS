@@ -254,33 +254,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Zoom"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""e102883a-b293-4b99-bbe4-96402cc18108"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Fire1"",
-                    ""type"": ""Button"",
-                    ""id"": ""f86c916b-eec8-4050-9a36-c19476279ef3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Fire2"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""5aa51036-2a35-4fe4-952d-d1502de2d0b7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold(pressPoint=0.1)"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Reload"",
                     ""type"": ""Button"",
                     ""id"": ""f9386156-17e2-4c11-acc6-78a3bff3629b"",
@@ -447,39 +420,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b9fc2323-1a3e-4b3d-86b5-34feec253d38"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Zoom"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fab3aea8-46bb-4bab-91f3-7a3f574fec51"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fire1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bc5b7b9c-76f2-4e76-ae06-e4316d798e90"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fire2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c599ec3d-2852-4d88-a6d7-0445fe0bf7d5"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
@@ -632,9 +572,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_SwitchLWeapon = m_PlayerActions.FindAction("SwitchLWeapon", throwIfNotFound: true);
         m_PlayerActions_SeekLeftLockOnTarget = m_PlayerActions.FindAction("Seek Left Lock On Target", throwIfNotFound: true);
         m_PlayerActions_SeekRightLockOnTarget1 = m_PlayerActions.FindAction("Seek Right Lock On Target1", throwIfNotFound: true);
-        m_PlayerActions_Zoom = m_PlayerActions.FindAction("Zoom", throwIfNotFound: true);
-        m_PlayerActions_Fire1 = m_PlayerActions.FindAction("Fire1", throwIfNotFound: true);
-        m_PlayerActions_Fire2 = m_PlayerActions.FindAction("Fire2", throwIfNotFound: true);
         m_PlayerActions_Reload = m_PlayerActions.FindAction("Reload", throwIfNotFound: true);
         // Player Camera
         m_PlayerCamera = asset.FindActionMap("Player Camera", throwIfNotFound: true);
@@ -760,9 +697,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_SwitchLWeapon;
     private readonly InputAction m_PlayerActions_SeekLeftLockOnTarget;
     private readonly InputAction m_PlayerActions_SeekRightLockOnTarget1;
-    private readonly InputAction m_PlayerActions_Zoom;
-    private readonly InputAction m_PlayerActions_Fire1;
-    private readonly InputAction m_PlayerActions_Fire2;
     private readonly InputAction m_PlayerActions_Reload;
     public struct PlayerActionsActions
     {
@@ -779,9 +713,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @SwitchLWeapon => m_Wrapper.m_PlayerActions_SwitchLWeapon;
         public InputAction @SeekLeftLockOnTarget => m_Wrapper.m_PlayerActions_SeekLeftLockOnTarget;
         public InputAction @SeekRightLockOnTarget1 => m_Wrapper.m_PlayerActions_SeekRightLockOnTarget1;
-        public InputAction @Zoom => m_Wrapper.m_PlayerActions_Zoom;
-        public InputAction @Fire1 => m_Wrapper.m_PlayerActions_Fire1;
-        public InputAction @Fire2 => m_Wrapper.m_PlayerActions_Fire2;
         public InputAction @Reload => m_Wrapper.m_PlayerActions_Reload;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
@@ -825,15 +756,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SeekRightLockOnTarget1.started += instance.OnSeekRightLockOnTarget1;
             @SeekRightLockOnTarget1.performed += instance.OnSeekRightLockOnTarget1;
             @SeekRightLockOnTarget1.canceled += instance.OnSeekRightLockOnTarget1;
-            @Zoom.started += instance.OnZoom;
-            @Zoom.performed += instance.OnZoom;
-            @Zoom.canceled += instance.OnZoom;
-            @Fire1.started += instance.OnFire1;
-            @Fire1.performed += instance.OnFire1;
-            @Fire1.canceled += instance.OnFire1;
-            @Fire2.started += instance.OnFire2;
-            @Fire2.performed += instance.OnFire2;
-            @Fire2.canceled += instance.OnFire2;
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
@@ -874,15 +796,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SeekRightLockOnTarget1.started -= instance.OnSeekRightLockOnTarget1;
             @SeekRightLockOnTarget1.performed -= instance.OnSeekRightLockOnTarget1;
             @SeekRightLockOnTarget1.canceled -= instance.OnSeekRightLockOnTarget1;
-            @Zoom.started -= instance.OnZoom;
-            @Zoom.performed -= instance.OnZoom;
-            @Zoom.canceled -= instance.OnZoom;
-            @Fire1.started -= instance.OnFire1;
-            @Fire1.performed -= instance.OnFire1;
-            @Fire1.canceled -= instance.OnFire1;
-            @Fire2.started -= instance.OnFire2;
-            @Fire2.performed -= instance.OnFire2;
-            @Fire2.canceled -= instance.OnFire2;
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
@@ -1012,9 +925,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSwitchLWeapon(InputAction.CallbackContext context);
         void OnSeekLeftLockOnTarget(InputAction.CallbackContext context);
         void OnSeekRightLockOnTarget1(InputAction.CallbackContext context);
-        void OnZoom(InputAction.CallbackContext context);
-        void OnFire1(InputAction.CallbackContext context);
-        void OnFire2(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
     }
     public interface IPlayerCameraActions

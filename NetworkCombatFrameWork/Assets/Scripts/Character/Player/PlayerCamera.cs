@@ -43,7 +43,15 @@ public class PlayerCamera : Singleton<PlayerCamera>
     public CharacterManager leftLockOnTarget;
     public CharacterManager rightLockOnTarget;
     
-
+    [Header("Aiming")]
+    [SerializeField] float aimTargetFollowSpeed = 0.05f;
+    [SerializeField] float setCameraAimSpeed = 1f;
+    [SerializeField] float aimCameraX = 0.5f;
+    [SerializeField] float aimCameraY = 1.8f;
+    [SerializeField] float aimCameraZ = 2.0f;
+    private Coroutine cameraZoomInCoroutine;
+    private Coroutine cameraZoomOutCoroutine;
+    
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -68,7 +76,6 @@ public class PlayerCamera : Singleton<PlayerCamera>
 
     private void HandleRotations()
     {
-        // IF LOCKED ON, FORCE ROTATION TOWARDS TARGET
         if (player.playerNetworkManager.isLockOn.Value)
         {
             Vector3 rotationDirection = player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position - transform.position;
@@ -96,8 +103,7 @@ public class PlayerCamera : Singleton<PlayerCamera>
             upAndDownLookAngle -= (PlayerInputManager.Instance.cameraVerticalInput * upAndDownRotationSpeed) * Time.deltaTime;
             // CLAMP THE UP AND DOWN LOOK ANGLE BETWEEN A MIN AND MAX VALUE
             upAndDownLookAngle = Mathf.Clamp(upAndDownLookAngle, minimumPivot, maximumPivot);
-
-
+            
             Vector3 cameraRotation = Vector3.zero;
             Quaternion targetRotation;
 
@@ -112,10 +118,6 @@ public class PlayerCamera : Singleton<PlayerCamera>
             targetRotation = Quaternion.Euler(cameraRotation);
             cameraPivotTransform.localRotation = targetRotation;
         }
-        
-        
-
-        
     }
 
     private void HandleCollisions()
@@ -314,6 +316,98 @@ public class PlayerCamera : Singleton<PlayerCamera>
         }
 
         yield return null;
+    }
+    
+    private IEnumerator SetCameraZoomIn()
+    {
+        float duration = 1;
+        float timer = 0;
+
+        Vector3 velocity = Vector3.zero;
+        Vector3 newAimCameraPos = new Vector3(aimCameraX, aimCameraY, aimCameraZ);
+        
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            if(player != null)
+            {
+                cameraPivotTransform.transform.localPosition = 
+                    Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newAimCameraPos, ref velocity, setCameraAimSpeed);
+                cameraPivotTransform.transform.localRotation = 
+                    Quaternion.Slerp(cameraPivotTransform.transform.localRotation, Quaternion.Euler(0, 0, 0), aimTargetFollowSpeed);
+            }
+            yield return null;
+        }
+        
+        cameraPivotTransform.transform.localPosition = newAimCameraPos;
+        cameraPivotTransform.transform.localRotation = Quaternion.Euler(0, 0, 0);
+           
+
+        yield return null;
+    }
+    
+    private IEnumerator SetCameraZoomOut()
+    {
+        float duration = 0.5f;
+        float timer = 0;
+
+        Vector3 velocity = Vector3.zero;
+        Vector3 newUnlockedCameraHeight = new Vector3(0, unlockedCameraHeight, 0);
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            if(player != null)
+            {
+                if(!player.IsAiming)
+                {
+                    cameraPivotTransform.transform.localPosition = 
+                        Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition, newUnlockedCameraHeight, ref velocity, setCameraAimSpeed);
+                    cameraPivotTransform.transform.localRotation = 
+                        Quaternion.Slerp(cameraPivotTransform.transform.localRotation, Quaternion.Euler(0, 0, 0), aimTargetFollowSpeed);
+                }
+            }
+            yield return null;
+        }
+        
+        cameraPivotTransform.transform.localPosition = newUnlockedCameraHeight;
+        cameraPivotTransform.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        yield return null;
+    }
+
+    public void Aiming()
+    {
+        if (player.playerNetworkManager.currentRightHandWeaponID.Value < 3)
+        {
+            player.IsAiming = false;
+            if(cameraZoomOutCoroutine != null)
+            {
+                StopCoroutine(cameraZoomOutCoroutine);
+            }
+            cameraZoomOutCoroutine = StartCoroutine(SetCameraZoomOut());
+            
+            return;
+        }
+
+        if (player.IsAiming)
+        {
+            if(cameraZoomInCoroutine != null)
+            {
+                StopCoroutine(cameraZoomInCoroutine);
+            }
+            cameraZoomInCoroutine = StartCoroutine(SetCameraZoomIn());
+        }
+        else
+        {
+            if(cameraZoomOutCoroutine != null)
+            {
+                StopCoroutine(cameraZoomOutCoroutine);
+            }
+            cameraZoomOutCoroutine = StartCoroutine(SetCameraZoomOut());
+        }
     }
 }
 
